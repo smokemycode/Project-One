@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where in the World?</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <div class="header__container">
+            <h1 class="header__title">Where in the World?</h1>
+            
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+        <!-- Search and Filter Section -->
+        <section class="controls">
+            <!-- Search Input -->
+            <div class="search">
+                <i class="fas fa-search search__icon"></i>
+                <input 
+                    type="text" 
+                    class="search__input" 
+                    id="search-input"
+                    placeholder="Search for a country..."
+                >
+            </div>
+
+            <!-- Region Filter Dropdown -->
+            <div class="filter">
+                <select class="filter__select" id="region-filter">
+                    <option value="">Filter by Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Countries Grid - JavaScript will fill this -->
+        <section class="countries" id="countries-grid">
+            <!-- Country cards will go here -->
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
