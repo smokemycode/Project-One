@@ -1,0 +1,198 @@
+/* ================================
+   CSS VARIABLES (Theme Colors)
+   ================================ */
+   
+/* Light Mode Colors (Default) */
+:root {
+    /* Background colors */
+    --bg-primary: hsl(0, 0%, 98%);        /* Very light gray - main background */
+    --bg-secondary: hsl(0, 0%, 100%);     /* White - cards and header */
+    
+    /* Text colors */
+    --text-primary: hsl(200, 15%, 8%);    /* Very dark blue - main text */
+    --text-secondary: hsl(0, 0%, 52%);    /* Dark gray - labels */
+    
+    /* Elements */
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 5px;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+    --bg-primary: hsl(207, 26%, 17%);     /* Dark blue - main background */
+    --bg-secondary: hsl(209, 23%, 22%);   /* Slightly lighter dark blue - cards */
+    --text-primary: hsl(0, 0%, 100%);     /* White - main text */
+    --text-secondary: hsl(0, 0%, 85%);    /* Light gray - labels */
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================
+   RESET & BASE STYLES
+   ================================ */
+
+/* Remove default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* Makes sizing easier to understand */
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;  /* Smooth color change */
+    min-height: 100vh;
+}
+
+/* ================================
+   HEADER STYLES
+   ================================ */
+
+.header {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    padding: 1.5rem 0;
+}
+
+.header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;                    /* Puts items side by side */
+    justify-content: space-between;   /* Pushes items to edges */
+    align-items: center;              /* Centers vertically */
+}
+
+.header__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;                      /* Space between icon and text */
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;                  /* Shows hand cursor */
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-primary);
+}
+
+/* ================================
+   MAIN CONTENT STYLES
+   ================================ */
+
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Controls Section (Search + Filter) */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;                  /* Allows wrapping on small screens */
+}
+
+/* Search Box */
+.search {
+    position: relative;               /* So we can position the icon inside */
+    flex: 1;
+    max-width: 400px;
+}
+
+.search__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);      /* Centers icon vertically */
+    color: var(--text-secondary);
+}
+
+.search__input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;     /* Left padding makes room for icon */
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+}
+
+.search__input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Region Filter Dropdown */
+.filter__select {
+    padding: 1rem 2rem 1rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Countries Grid */
+.countries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Country Card (we'll style these when JS creates them) */
+.country-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.country-card:hover {
+    transform: translateY(-5px);      /* Lifts card up on hover */
+}
+
+.country-card__flag {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;                /* Makes image fill space nicely */
+}
+
+.country-card__info {
+    padding: 1.5rem;
+}
+
+.country-card__name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.country-card__detail {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.country-card__label {
+    font-weight: 600;
+}
