@@ -180,3 +180,34 @@ if (!searchInput) {
         renderCountries(displayedCountries);
     });
 }
+
+// REGION FILTER FUNCTIONALITY
+
+// Find the region filter dropdown
+const regionFilter = document.getElementById('region-filter');
+
+// Listen for when the user selects a region
+regionFilter.addEventListener('change', (event) => {
+    // Get the selected region
+    const selectedRegion = event.target.value;
+    
+    // Filter the countries
+    let filtered;
+    
+    if (selectedRegion === '') {
+        // If "Filter by Region" is selected, show all
+        filtered = allCountries;
+    } else {
+        // Otherwise, show only countries from that region
+        filtered = allCountries.filter(country => {
+            return country.region === selectedRegion;
+        });
+    }
+    
+    // Show the filtered countries
+    displayedCountries = filtered;
+    renderCountries(displayedCountries);
+    
+    // Also clear the search input
+    searchInput.value = '';
+});
