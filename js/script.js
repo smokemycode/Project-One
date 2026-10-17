@@ -144,70 +144,59 @@ function renderCountries(countries) {
 
 fetchCountries();
 
-// SEARCH FUNCTIONALITY
 
-// Find the search input element
+// COMBINED SEARCH AND FILTER
+
 const searchInput = document.getElementById('search-input');
-
-// Double-check the element exists
-if (!searchInput) {
-    console.error('❌ Could not find #search-input in the HTML!');
-} else {
-    console.log('✅ Search input found');
-    
-    // Listen for when the user types
-    searchInput.addEventListener('input', (event) => {
-        const searchTerm = event.target.value.toLowerCase().trim();
-        
-        console.log('🔍 Searching for:', searchTerm); // Debug log
-        
-        // If search is empty, show all countries
-        if (searchTerm === '') {
-            displayedCountries = allCountries;
-            renderCountries(displayedCountries);
-            return;
-        }
-        
-        // Filter using our SAFE name getter from Commit 3
-        const filtered = allCountries.filter(country => {
-            const name = getCountryName(country).toLowerCase();
-            return name.includes(searchTerm);
-        });
-        
-        console.log('📊 Found', filtered.length, 'matching countries'); // Debug log
-        
-        displayedCountries = filtered;
-        renderCountries(displayedCountries);
-    });
-}
-
-// REGION FILTER FUNCTIONALITY
-
-// Find the region filter dropdown
 const regionFilter = document.getElementById('region-filter');
 
-// Listen for when the user selects a region
-regionFilter.addEventListener('change', (event) => {
-    // Get the selected region
-    const selectedRegion = event.target.value;
+// Safety check - make sure both elements exist
+if (!searchInput || !regionFilter) {
+    console.error('❌ Missing element!');
+    console.error('searchInput:', searchInput);
+    console.error('regionFilter:', regionFilter);
+} else {
+    console.log('✅ Search and filter elements found');
     
-    // Filter the countries
-    let filtered;
-    
-    if (selectedRegion === '') {
-        // If "Filter by Region" is selected, show all
-        filtered = allCountries;
-    } else {
-        // Otherwise, show only countries from that region
-        filtered = allCountries.filter(country => {
-            return country.region === selectedRegion;
-        });
+    // This function applies BOTH search AND region filter together
+    function applyFilters() {
+        // Get search term (make it lowercase, remove extra spaces)
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        // Get selected region
+        const selectedRegion = regionFilter.value;
+        
+        console.log('🔍 Search term:', `"${searchTerm}"`, '| Region:', `"${selectedRegion}"`);
+        
+        // Start with ALL countries
+        let filtered = allCountries;
+        
+        // Apply search filter if user typed something
+        if (searchTerm !== '') {
+            filtered = filtered.filter(country => {
+                const name = getCountryName(country).toLowerCase();
+                return name.includes(searchTerm);
+            });
+        }
+        
+        // Apply region filter if user selected a region
+        if (selectedRegion !== '') {
+            filtered = filtered.filter(country => {
+                return country.region === selectedRegion;
+            });
+        }
+        
+        console.log('📊 Showing', filtered.length, 'countries');
+        
+        // Show the filtered countries
+        displayedCountries = filtered;
+        renderCountries(displayedCountries);
     }
     
-    // Show the filtered countries
-    displayedCountries = filtered;
-    renderCountries(displayedCountries);
+    // Listen for search input
+    searchInput.addEventListener('input', applyFilters);
     
-    // Also clear the search input
-    searchInput.value = '';
-});
+    // Listen for region change
+    regionFilter.addEventListener('change', applyFilters);
+}
+
