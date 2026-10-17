@@ -196,3 +196,128 @@ body {
 .country-card__label {
     font-weight: 600;
 }
+
+/* ================================
+   DETAIL PAGE STYLES
+   ================================ */
+
+/* Back Button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+}
+
+/* Country Detail Layout */
+.country-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Flag */
+.country-detail__flag {
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+}
+
+/* Info Section */
+.country-detail__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.country-detail__name {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* Two-column info layout */
+.country-detail__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.country-detail__text {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.country-detail__label {
+    font-weight: 600;
+}
+
+/* Border Countries */
+.country-detail__borders {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.country-detail__borders-label {
+    font-weight: 600;
+}
+
+.border-country {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    font-size: 0.85rem;
+    transition: transform 0.2s;
+}
+
+.border-country:hover {
+    transform: scale(1.05);
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .country-detail {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .country-detail__columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search {
+        max-width: 100%;
+    }
+}
